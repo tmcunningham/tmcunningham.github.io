@@ -9,5 +9,5 @@ I am a PhD student at the University of Manchester as part of the Data Analytics
 # Projects
 
 The following projects were completed as assessments for a Programming for Social Scientists module taught by the University of Leeds:
-- [Sheep and wolves agent based model](sheep-and-wolves)
-- [Planning for drunks](planning-for-drunks)
+- [Sheep and wolves agent based model](https://tmcunningham.github.io/sheep-and-wolves)
+- [Planning for drunks](https://tmcunningham.github.io/planning-for-drunks)
