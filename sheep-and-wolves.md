@@ -6,4 +6,4 @@ Title: Sheep and wolves
 
 **[View this project on Github](https://github.com/tmcunningham/abm)**
 
-![Alt Text](images/sheep-and-wolves.gif)
+![Alt Text](images/sheep_and_wolves.gif)
