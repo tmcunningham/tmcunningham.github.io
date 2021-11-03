@@ -27,6 +27,7 @@ Further work on this project could involve allowing a wolf to see a sheep that i
 ## Unused code
 
 In the final_model.py script, there are several chunks of code that are commented out. Most of this is code that helped me in the process of developing the model, which I thought would be useful to submit as part of the assignment but which is not necessary (and potentially confusing) for anyone else wanting to run the model. For example, I noticed that the script could take a while to run so I timed different sections of the code to see which parts were the most time consuming. I found that the web scraping (which was initially the first thing to run) usually took over 20 seconds to run. To stop the user having a long wait as soon as they started the programme, I moved this section of code to be later in the script and added a line to print "Obtaining web data..." while the process was ongoing. The code for timing the web scraping is below:
+
     # Start time for scraping web data
     start_time_web = timeit.default_timer()
 
@@ -48,6 +49,7 @@ In the final_model.py script, there are several chunks of code that are commente
     print("Time taken to scrape web data: " + str(end_time_web - start_time_web))
 
 I also commented out some code to save a GIF of the animation (as used on this page). This took a while to run and wasn't need after I had produced one GIF, but it can be uncommented if a user wants to save a GIF. If this is the case it might be worth commenting out the tkinter code, as it can take a long time to run both sections. The code to save the animation is:
+
     # Save animation as GIF
     animation = matplotlib.animation.FuncAnimation(fig, update, interval=1, 
                                                    repeat = False,
