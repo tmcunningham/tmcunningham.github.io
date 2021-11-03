@@ -19,7 +19,7 @@ If there is an internet connection when the model is run, the x and y co-ordinat
 
 ## Wolves' movement and eating
 
-The wolves in the model by default move slightly faster than the sheep (3 spaces instead of 1). However, depending on the value of ```wolf_neighbourhood``` (which can be set by the user), the wolf can move significantly further than these 3 spaces if it eats a sheep. The default value of ```wolf_neighbourhood``` is 30 - that this is significantly higher than the wolf's normal speed is intended to represent the difference between a wolf aimlessly moving around a field and a wolf pursuing prey it has seen. If there multiple sheep within a wolf's neighbourhood, the wolf will eat the nearest one.
+The wolves in the model by default move slightly faster than the sheep (3 spaces instead of 1). However, depending on the value of ```wolf_neighbourhood``` (which can be set by the user), the wolf can move significantly further than these 3 spaces if it eats a sheep. The default value of ```wolf_neighbourhood``` is 30 - that this is significantly higher than the wolf's normal speed is intended to represent the difference between a wolf aimlessly moving around a field and a wolf pursuing prey it has seen. If there are multiple sheep within a wolf's neighbourhood, the wolf will eat the nearest one.
 
 Further work on this project could involve allowing a wolf to see a sheep that it cannot reach in a single iteration and pursue this prey over multiple moves. Sheep could also respond to being pursued by running away from the wolf.
 
