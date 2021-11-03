@@ -23,7 +23,23 @@ The wolves in the model by default move slightly faster than the sheep (3 spaces
 
 Further work on this project could involve allowing a wolf to see a sheep that it cannot reach in a single iteration and pursue this prey over multiple moves. Sheep could also respond to being pursued by running away from the wolf.
 
-## ```agent.distance_between``` method
+## ```agent.distance_between``` method and testing
+
+Initially, the ```agent.distance_between``` method in the agentframework.py script (used by both the ```sheep.share_with_neighbours``` and ```wolf.eat``` methods) was a simple calculation of the Euclidean distance between two points. However, this did not take into account the wrap-around nature of the environment (if an agent moves off the edge of the environment, it will reappear on the other side). To fix this I used the below code inside the method to make sure the calculation looked at the difference in x and y co-ordinates modulo the length of the environment and selected the minimum value before calculating the distance:
+
+```python
+(min(
+    [((self.y - other_agent.y) % len(self.environment))**2,
+      ((other_agent.y - self.y) % len(self.environment))**2]
+    ) + \
+ min(
+     [((self.x - other_agent.x) % len(self.environment[0]))**2,
+      ((other_agent.x - self.x) % len(self.environment[0]))**2]
+     )
+ )**0.5
+```
+
+I created a file, test_distance_between.py, to test this method. Although the test is very simple and does not cover all cases, I was mostly interested in checking whether the method correctly calculates distances between two agents across the edge of the environment. The test cases confirm that it does. Other functions and methods in the model were tested using simpler methods, such as printing out values to check they were as expected.
 
 ## Commented-out code
 
