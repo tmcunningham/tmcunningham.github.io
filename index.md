@@ -6,7 +6,7 @@ title: Tom Cunningham
 
 I am a PhD student at the University of Manchester as part of the [Data Analytics and Society CDT programme](https://datacdt.org/). My research will focus on spatial data analysis and child labour.
 
-I graduated from Imperial College London with an MSci in Mathematics and have previously worked as a data analyst, most recently for the National Gallery.
+I graduated from Imperial College London with an MSci in Mathematics and have since worked as a data analyst, most recently for the National Gallery.
 
 # Projects
 
