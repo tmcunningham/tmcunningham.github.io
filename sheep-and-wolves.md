@@ -25,37 +25,36 @@ Further work on this project could involve allowing a wolf to see a sheep that i
 
 ## Commented-out code
 
-In the final_model.py script, there are several chunks of code that are commented out. Most of this is code that helped me in the process of developing the model, which I thought would be useful to submit as part of the assignment but which is not necessary (and potentially confusing) for anyone else wanting to run the model. For example, I noticed that the script could take a while to run so I timed different sections of the code to see which parts were the most time consuming. I found that the web scraping (which was initially the first thing to run) could take over 20 seconds to run. To stop the user having a long wait as soon as they started the programme, I moved this section of code to be later in the script and added a line to print "Obtaining web data..." while the process was ongoing. The code for timing the web scraping is below:
+In the final_model.py script, there are several chunks of code that are commented out. Most of this is code that helped me in the process of developing the model, which I thought would be useful to submit as part of the assignment but which is not necessary (and potentially confusing) for anyone else wanting to run the model. For example, I noticed that the script could take a while to run so I timed different sections of the code to see which parts were the most time consuming. I found that the web scraping (which was initially the first thing to run) could take over 20 seconds to run. To stop the user having a long wait as soon as they started the programme, I moved this section of code to be later in the script and added a line to print "Obtaining web data..." while the process was ongoing. The code for timing the web scraping is below (there is also a line commented out that checks the get request received the correct response):
 
 ```python
 # Start time for scraping web data
 start_time_web = timeit.default_timer()
 
 # Try to get data from course website for first sheep xs and ys
-# If ConnectionError then set x and y lists to be empty - will be randomised
 try:
     print("Obtaining web data...")
     r = requests.get("https://www.geog.leeds.ac.uk/courses/computing/"+
                      "practicals/python/agent-framework/part9/data.html")
-
+    
     # Check response is 200
     # print(r)
-
+    
     # Parse HTML and read ys and xs
     soup = bs4.BeautifulSoup(r.text, "html.parser")
     td_ys = soup.find_all(attrs={"class" : "y"})
-    td_xs = soup.find_all(attrs={"class" : "x"})
-
-    # End time for scraping web data
-    end_time_web = timeit.default_timer()
-    print("Time taken to scrape web data: " + 
-          str(end_time_web - start_time_web))
-
+    td_xs = soup.find_all(attrs={"class" : "x"}) 
+# If ConnectionError then set x and y lists to be empty - will be randomised
 except requests.exceptions.ConnectionError:
     print("Could not connect to internet. " + 
           "Defaulting to all sheep random co-ordinates.")
     td_ys = []
     td_xs = []
+
+# End time for scraping web data
+end_time_web = timeit.default_timer()
+print("Time taken to scrape web data: " + 
+      str(end_time_web - start_time_web))
 ```
 
 I also commented out some code to save a GIF of the animation (as used on this page). This took a while to run and wasn't need after I had produced one GIF, but it can be uncommented if a user wants to save a GIF. If this is the case it might be worth commenting out the tkinter code, as it can take a long time to run both sections. The code to save the animation is:
