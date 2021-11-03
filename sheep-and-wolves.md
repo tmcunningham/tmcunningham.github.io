@@ -9,12 +9,11 @@ Title: Sheep and wolves
 This project simulates sheep moving and eating grass in a field and wolves that hunt them. It was produced for the GEOG5995 Programming for Social Scientists module taught by the University of Leeds.
 
 The model works by simulating sheep randomly moving in an environment, eating some of the environment (and adding eaten material to their personal store), throwing up if they eat too much (and adding the material back to the environment), and sharing with neighbours with less store than them. Wolves also move randomly around the environment (faster than the sheep), but will move to and eat sheep if they are within their "neighbourhood". The animation below shows the first 100 iterations of a run of the model (sheep are white and wolves are black).
-
 ![sheep_and_wolves_animation](images/sheep_and_wolves.gif)
 
 Most information about how to run the model and its outputs can be [found in the GitHub README](https://github.com/tmcunningham/abm), but there were a few specific points I thought it was worth discussing in detail here.
 
-## Sheeps' starting positions
+## Sheep's starting positions
 
 The x and y co-ordinates for the first 100 sheep are obtained from scraping the [data found here](https://www.geog.leeds.ac.uk/courses/computing/practicals/python/agent-framework/part9/data.html) - this means these sheep are clustered in the bottom-left corner of the field. If more than 100 sheep are required, the first 100 will still be assigned x and y co-ordinates using the web data but the co-ordinates of any additional sheep are set to be random within the field (or rather, they passed to the constructor as ```None``` which then defaults to random co-ordinates).
 
