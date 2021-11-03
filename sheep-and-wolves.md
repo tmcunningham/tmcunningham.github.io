@@ -16,7 +16,7 @@ Most information about how to run the model and its outputs can be [found in the
 
 ## Sheeps' starting positions
 
-The x and y co-ordinates for the first 100 sheep are obtained from scraping the [data found here] (https://www.geog.leeds.ac.uk/courses/computing/practicals/python/agent-framework/part9/data.html) - this means these sheep are clustered in the bottom-left corner of the field. If more than 100 sheep are required, the first 100 will still be assigned x and y co-ordinates using the web data but the co-ordinates of any additional sheep are set to be random within the field (or rather, they passed to the constructor as ```None``` which then defaults to random co-ordinates).
+The x and y co-ordinates for the first 100 sheep are obtained from scraping the [data found here](https://www.geog.leeds.ac.uk/courses/computing/practicals/python/agent-framework/part9/data.html) - this means these sheep are clustered in the bottom-left corner of the field. If more than 100 sheep are required, the first 100 will still be assigned x and y co-ordinates using the web data but the co-ordinates of any additional sheep are set to be random within the field (or rather, they passed to the constructor as ```None``` which then defaults to random co-ordinates).
 
 ## Wolves' movement and eating
 
