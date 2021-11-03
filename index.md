@@ -4,7 +4,7 @@ title: Tom Cunningham
 
 # About me
 
-I am a PhD student at the University of Manchester as part of the Data Analytics and Society CDT programme. My research will focus on spatial data analysis and child labour.
+I am a PhD student at the University of Manchester as part of the [Data Analytics and Society CDT programme](https://datacdt.org/). My research will focus on spatial data analysis and child labour.
 
 # Projects
 
