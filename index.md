@@ -10,7 +10,7 @@ I am a PhD student at the University of Manchester as part of the [Data Analytic
 
 The following projects were completed as assessments for a Programming for Social Scientists module taught by the University of Leeds. Please click the project titles to learn more:
 
-### [Sheep and wolves agent based model](https://tmcunningham.github.io/sheep-and-wolves)
+### [Sheep and Wolves Agent Based Model](https://tmcunningham.github.io/sheep-and-wolves)
 
 This project simulates sheep moving around a field eating grass, while wolves hunt them. The code produces a GUI which the user can use to run an animation of the agent based model.
 
