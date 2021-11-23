@@ -4,7 +4,7 @@ Title: Sheep and wolves
 
 # Sheep and Wolves Agent Based Model
 
-## **[View this project on Github](https://github.com/tmcunningham/abm)**
+## **[View this project on GitHub](https://github.com/tmcunningham/abm)**
 
 This project simulates sheep moving and eating grass in a field and wolves that hunt them. It was produced for the GEOG5995 Programming for Social Scientists module taught by the University of Leeds.
 
