@@ -18,9 +18,11 @@ This project was completed as an assignment for the Programming for Social Scien
 - Draws the density of drunks passing through each point on a map.
 - Saves the density map to a file as text.
 
-## Significant improvements
+All of these requirements are met by the **drunk_model.py** script (which uses the **drunksframework.py** for the ```drunk``` class and **drunk_functions.py** for other functions).
 
-Aside from the basic assignment requirements, I made two major additions to the programme:
+## Additional improvements
+
+As well as the basic assignment requirements, I made two major additions to the programme:
 
 ### 1. Drunks will sober up and eventually remember where their home is
 
@@ -30,63 +32,56 @@ Drunks have a ```drunk_level``` attribute, which determines "how drunk" they are
 
 To make the simulation more realistic, I stopped the drunks being able to walk through buildings. Instead, when they are at the edge of a building, they will move along the edge of it in a random direction. This was surprisingly challenging to implement.
 
-## Development process
+I also created two extra files, **test_drunk_functions.py** and **measure_drunks_moves.py**, to test and analyse the code. These are discussed at the end of this page.
+
+## Development
+
+### Development process
 
 The development of this project followed these stages:
-- reading in the data file and finding a way to identify buildings 
-- creating a drunk class along with a method to move drunks
-- model the drunks moving in the environment and  create an animation
-- find a way to stop drunks moving through buildings
-- add functionality to help the drunks get home
-- create a separate module for functions used in the project so they can be tested more easily
+- Read in the data file and finding a way to identify buildings.
+- Create a drunk class along with a method to move drunks.
+- Model the drunks moving in the environment and  create an animation.
+- Find a way to stop drunks moving through buildings.
+- Add functionality to help the drunks get home.
+- Create a separate module for functions used in the project and a test module for unit tests.
 
-Rather than go through the whole development process in detail here, I will focus on a few key elements of this project that I found presented new challenges for me.
+I made the decision that the output of the model should be presented as an animation, as I did not see much benefit in it making use of a GUI (without significant work to give the GUI extra functionality).
 
-### Recognising houses and pub from raster file
+### Challenges
 
-### Sobering drunks up
+#### Recognising houses and pub from raster file
 
-I wanted to find a way to help the drunks get home that would be analagous to real life, and decided that it would be interesting to have drunks sober up as time (or the number of iterations in the model) went on. To do this, I gave the drunks a ```drunk_level``` attribute which would 
 
-### Stopping drunks moving through buildings
+#### Drunks moving around buildings
 
-By far the most difficult part of developing the programme was stopping the drunks from walking through buildings. Initially I attempted to use a while loop in the ```Drunk.move()``` method, as in the following code:
+By far the most difficult part of developing the programme was stopping the drunks from walking through buildings. Initially I attempted to use an infinite while loop in the ```Drunk.move()``` method, that would set new x and y co-ordinates for the drunk within the loop and break only when the new co-ordinates were not in the set of building co-ordinates (excluding the drunk's house). However, this seemed to be too intensive and caused the programme to crash. Instead, I added an if statement after generating the new co-ordinates that checked if they were within a building (see below). If they weren't, then these co-ordinates are used as the drunk's new co-ordinates. Otherwise the drunk's co-ordinates were updated so the drunk would move perpendicular to the building (i.e., if the drunk was moving in the x direction into the building, the y co-ordinate would be updated and vice-versa).
 
 ```python
-# Infinite loop that will break when new co-ordinates are not in a building
-while True:
-    if self.drunk_level > 0:
-        # Call random once so using the same random number
-	random_num = random.random()
-	closest_home_y = new_y
-	closest_home_x = new_x
-
-    else:
-	# If drunk level == 0 set closest home coords
-	closest_home_y = min([t[1] for t in self.home_coords],
-			     key = lambda y: abs(y - new_y))   
-	closest_home_x = min([t[0] for t in self.home_coords],
-			     key = lambda x: abs(x - new_x))
-	random_num = 1
-
-    if random_num < 0.25 or closest_home_y > new_y:
-        new_y = (self.y + self.speed) % len(self.town)
-    elif random_num < 0.5 or closest_home_y < new_y:
-        new_y = (self.y - self.speed) % len(self.town)
-    elif random_num < 0.75 or closest_home_x > new_x:
-        new_x = (self.x + self.speed) % len(self.town[0])
-    else:
-        new_x = (self.x - self.speed) % len(self.town[0])                
-
-
-    # Update x and y if they are not building co-ordinates
-    if (new_x, new_y) not in self.other_building_coords:
-        break
-
+# Update x and y if they are not building co-ordinates            
+if (new_x, new_y) not in self.other_building_coords:
 (self.x, self.y) = new_x, new_y
+
+# If new x coordinate is in a building, change y instead
+elif (new_x, self.y) in self.other_building_coords:
+    if random.random() > 0.5:
+        self.y = (self.y + self.speed) % len(self.town)
+    else: 
+        self.y = (self.y - self.speed) % len(self.town)
+
+# If new y coord is in a building, change x instead
+elif (self.x, new_y) in self.other_building_coords:
+    if random.random() > 0.5:
+        self.x = (self.x + self.speed) % len(self.town)
+    else: 
+        self.x = (self.x - self.speed) % len(self.town)
 ```
 
-However, this caused the programme to crash and I could not seem to make it work using a while loop.
+#### Sober drunks getting stuck on buildings
+
+After introducing a way to help drunks with a ```drunk_level``` of 0 to get home (by altering their y co-ordinate and then their x co-ordinate in the correct directions) and a way for drunks to move around buildings (as above), there was still an issue that sober drunks could get stuck on the side of a building on the other side of their house. This was because if the drunk was already at the same y co-ordinate as their house, the model would attempt to update the x co-ordinate but this would be in a building and so the model would change the y co-ordinate instead. In the next iteration, the y-cordinate would be changed to match the drunk's home meaning the drunk would be in the same position as the start of the iteration before. The drunk would then move back and forwards on the edge of a building indefinitely.
+
+To fix this, I randomised the order in which the y and x co-ordinates were updated when a sober drunk (```drunk_level == 0```) was moving towards its house (see code below). While this still means there can be some moving backwards and forwards on the side of a building, eventually the randomness should mean that the drunk breaks out of this loop. Setting the drunk's ```speed``` to be higher (5 when the drunk is sober) also means there is more chance of the drunk getting around the building sooner. The random order in which the co-ordinates are updated also means that the drunks move in a staggering motion, which works well with them probably still being tipsy! 
 
 ## Testing
 
@@ -96,6 +91,16 @@ I created a separate test module, test_drunk_functions.py, for testing the model
 
 ### Comparing drunk levels
 
-I was interested to see 
+I was interested to see how the drunks' ```drunk_level``` affects the time taken for all drunks to get home and so I created a separate script (**measure_drunks_moves.py**) that would simulate the model with drunks at different ```drunk_level```s (without outputting the animation or text file), store the number of iterations it took all drunks to get home, and then plot a boxplot of the results. For each ```drunk_level``` the script ran the model 1,000 times. The results are shown on the boxplot below. As expected, in general, the higher the ```drunk_level```, the longer it takes all drunks to get home.
 
-## Further work
+![boxplot](images/boxplot.png)
+
+## Known issues and further work
+
+There are no major known issues with the programme. The following areas are points to be aware of and could probably be improved with more work:
+- The drunks can take a while to get around buildings (particularly the pub, which is larger than the houses) if they are sober and their house is on the other side. This depends on the direction chosen for the drunk to move in. As this choice is random, the number of iterations taken for this to resolve will vary but it should happen eventually.
+- As the stopping of drunks going through buildings is done by looking at the co-ordinate that they move to rather than the path they take, if the drunk's ```speed``` was too high, they could potentially jump over buildings (including their own house). While this is not an issue for the values in the model (and ```speed``` is a protected attribute that is set automatically within the drunk class), it is worth being aware of if a user starts to chaneg the source code.
+
+Further work on this programme could include:
+- Introducing a way for drunks to interact with each other (e.g., stopping to talk to one another when close enough).
+- Simulating the drunks moving inside the pub until they get to one of the exits.
