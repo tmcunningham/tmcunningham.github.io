@@ -18,7 +18,7 @@ This project simulates sheep moving around a field eating grass, while wolves hu
 
 ### [Planning for drunks](https://tmcunningham.github.io/planning-for-drunks)
 
-WORK IN PROGRESS: This project is another agent based model, simulating drunks walking home from the pub. The drunks initially do not know which their house is and move randomly, but gradually sober up.
+This project is another agent based model, simulating drunks walking home from the pub. The drunks initially do not know which their house is and move randomly, but gradually sober up and move towards home.
 
 # Other interests
 
