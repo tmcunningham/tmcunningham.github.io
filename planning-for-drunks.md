@@ -85,36 +85,36 @@ To fix this, I randomised the order in which the y and x co-ordinates were updat
 
 ```python
 # If drunk_level == 0, move drunk towards home
-    # Randomise whether to change x or y coord first to help with issue
-    # of drunks getting stuck at buildings
-    else:
-        if random.random() < 0.5:
-            if  self.front_door[1] > self.y:
-                new_y = (self.y + self.speed) % len(self.town)
-                new_x = self.x
-            elif self.front_door[1] < self.y:
-                new_y = (self.y - self.speed) % len(self.town)
-                new_x = self.x
-            elif self.front_door[0] > self.x:
-                new_x = (self.x + self.speed) % len(self.town[0])
-                new_y = self.y
-            else:
-                new_x = (self.x - self.speed) % len(self.town[0])
-                new_y = self.y
+# Randomise whether to change x or y coord first to help with issue
+# of drunks getting stuck at buildings
+else:
+    if random.random() < 0.5:
+        if  self.front_door[1] > self.y:
+            new_y = (self.y + self.speed) % len(self.town)
+            new_x = self.x
+        elif self.front_door[1] < self.y:
+            new_y = (self.y - self.speed) % len(self.town)
+            new_x = self.x
+        elif self.front_door[0] > self.x:
+            new_x = (self.x + self.speed) % len(self.town[0])
+            new_y = self.y
+        else:
+            new_x = (self.x - self.speed) % len(self.town[0])
+            new_y = self.y
 
-        else:                  
-            if self.front_door[0] > self.x:
-                new_x = (self.x + self.speed) % len(self.town[0])
-                new_y = self.y
-            elif self.front_door[0] < self.x:
-                new_x = (self.x - self.speed) % len(self.town[0])
-                new_y = self.y 
-            elif self.front_door[1] > self.y:
-                new_y = (self.y + self.speed) % len(self.town)
-                new_x = self.x
-            else:
-                new_y = (self.y - self.speed) % len(self.town)
-                new_x = self.x
+    else:                  
+        if self.front_door[0] > self.x:
+            new_x = (self.x + self.speed) % len(self.town[0])
+            new_y = self.y
+        elif self.front_door[0] < self.x:
+            new_x = (self.x - self.speed) % len(self.town[0])
+            new_y = self.y 
+        elif self.front_door[1] > self.y:
+            new_y = (self.y + self.speed) % len(self.town)
+            new_x = self.x
+        else:
+            new_y = (self.y - self.speed) % len(self.town)
+            new_x = self.x
 ```
 
 ## Testing
