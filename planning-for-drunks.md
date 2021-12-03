@@ -81,7 +81,41 @@ elif (self.x, new_y) in self.other_building_coords:
 
 After introducing a way to help drunks with a ```drunk_level``` of 0 to get home (by altering their y co-ordinate and then their x co-ordinate in the correct directions) and a way for drunks to move around buildings (as above), there was still an issue that sober drunks could get stuck on the side of a building on the other side of their house. This was because if the drunk was already at the same y co-ordinate as their house, the model would attempt to update the x co-ordinate but this would be in a building and so the model would change the y co-ordinate instead. In the next iteration, the y-cordinate would be changed to match the drunk's home meaning the drunk would be in the same position as the start of the iteration before. The drunk would then move back and forwards on the edge of a building indefinitely.
 
-To fix this, I randomised the order in which the y and x co-ordinates were updated when a sober drunk (```drunk_level == 0```) was moving towards its house (see code below). While this still means there can be some moving backwards and forwards on the side of a building, eventually the randomness should mean that the drunk breaks out of this loop. Setting the drunk's ```speed``` to be higher (5 when the drunk is sober) also means there is more chance of the drunk getting around the building sooner. The random order in which the co-ordinates are updated also means that the drunks move in a staggering motion, which works well with them probably still being tipsy! 
+To fix this, I randomised the order in which the y and x co-ordinates were updated when a sober drunk (```drunk_level == 0```) was moving towards its house (see code below). While this still means there can be some moving backwards and forwards on the side of a building, eventually the randomness should mean that the drunk breaks out of this loop. Setting the drunk's ```speed``` to be higher (5 when the drunk is sober) also means there is more chance of the drunk getting around the building sooner. The random order in which the co-ordinates are updated also means that the drunks move in a staggering motion, which works well with them probably still being tipsy!
+
+```python
+# If drunk_level == 0, move drunk towards home
+    # Randomise whether to change x or y coord first to help with issue
+    # of drunks getting stuck at buildings
+    else:
+        if random.random() < 0.5:
+            if  self.front_door[1] > self.y:
+                new_y = (self.y + self.speed) % len(self.town)
+                new_x = self.x
+            elif self.front_door[1] < self.y:
+                new_y = (self.y - self.speed) % len(self.town)
+                new_x = self.x
+            elif self.front_door[0] > self.x:
+                new_x = (self.x + self.speed) % len(self.town[0])
+                new_y = self.y
+            else:
+                new_x = (self.x - self.speed) % len(self.town[0])
+                new_y = self.y
+
+        else:                  
+            if self.front_door[0] > self.x:
+                new_x = (self.x + self.speed) % len(self.town[0])
+                new_y = self.y
+            elif self.front_door[0] < self.x:
+                new_x = (self.x - self.speed) % len(self.town[0])
+                new_y = self.y 
+            elif self.front_door[1] > self.y:
+                new_y = (self.y + self.speed) % len(self.town)
+                new_x = self.x
+            else:
+                new_y = (self.y - self.speed) % len(self.town)
+                new_x = self.x
+```
 
 ## Testing
 
