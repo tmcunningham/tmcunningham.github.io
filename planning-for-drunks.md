@@ -32,7 +32,21 @@ To make the simulation more realistic, I stopped the drunks being able to walk t
 
 ## Development process
 
+The development of this project followed these stages:
+- reading in the data file and finding a way to identify buildings 
+- creating a drunk class along with a method to move drunks
+- model the drunks moving in the environment and  create an animation
+- find a way to stop drunks moving through buildings
+- add functionality to help the drunks get home
+- create a separate module for functions used in the project so they can be tested more easily
 
+Rather than go through the whole development process in detail here, I will focus on a few key elements of this project that I found presented new challenges for me.
+
+### Recognising houses and pub from raster file
+
+### Sobering drunks up
+
+I wanted to find a way to help the drunks get home that would be analagous to real life, and decided that it would be interesting to have drunks sober up as time (or the number of iterations in the model) went on. To do this, I gave the drunks a ```drunk_level``` attribute which would 
 
 ### Stopping drunks moving through buildings
 
@@ -76,4 +90,12 @@ However, this caused the programme to crash and I could not seem to make it work
 
 ## Testing
 
+### Test module
+
 I created a separate test module, test_drunk_functions.py, for testing the model's functions and methods of the drunk class. While I created most of these tests after the functions (and I had already done some ad-hoc testing of the functions), it was helpful to know that the functions worked in the way I expected. the tests also helped me spot some minor issues - for exmaple, a string printed by the ```drunk_functions.gen_function``` function had douple spaces which meant it failed the ```TestGenFunction.test_past_iterations``` test.
+
+### Comparing drunk levels
+
+I was interested to see 
+
+## Further work
