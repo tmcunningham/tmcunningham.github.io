@@ -18,7 +18,7 @@ This project was completed as an assignment for the Programming for Social Scien
 - Draws the density of drunks passing through each point on a map.
 - Saves the density map to a file as text.
 
-All of these requirements are met by the **drunk_model.py** script (which uses the **drunksframework.py** for the ```drunk``` class and **drunk_functions.py** for other functions).
+All of these requirements are met by the **drunk_model.py** script (which uses **drunksframework.py** for the ```drunk``` class and **drunk_functions.py** for other functions).
 
 ## Additional improvements
 
