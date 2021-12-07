@@ -124,7 +124,11 @@ else:
 
 ### Test module
 
-I created a separate test module, test_drunk_functions.py, for testing the model's functions and methods of the drunk class. While I created most of these tests after the functions (and I had already done some ad-hoc testing of the functions), it was helpful to know that the functions worked in the way I expected. the tests also helped me spot some minor issues - for exmaple, a string printed by the ```drunk_functions.gen_function``` function had douple spaces which meant it failed the ```TestGenFunction.test_past_iterations``` test.
+I created a separate test module, **test_drunk_functions.py**, for testing the model's functions and methods of the drunk class. While I created most of these tests after the functions (and I had already done some ad-hoc testing of the functions), it was helpful to know that the functions worked in the way I expected. the tests also helped me spot some minor issues - for exmaple, a string printed by the ```drunk_functions.gen_function``` function had douple spaces which meant it failed the ```TestGenFunction.test_past_iterations``` test. The test module can be run using the following line of code in the command line in the **python** directory of the project:
+
+```
+python -m unittest test_drunk_functions
+```
 
 ### Comparing drunk levels
 
