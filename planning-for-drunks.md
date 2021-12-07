@@ -132,7 +132,7 @@ python -m unittest test_drunk_functions
 
 ### Comparing drunk levels
 
-I was interested to see how the drunks' ```drunk_level``` affects the time taken for all drunks to get home and so I created a separate script (**measure_drunks_moves.py**) that would simulate the model with drunks at different ```drunk_level```s (without outputting the animation or text file), store the number of iterations it took all drunks to get home, and then plot a boxplot of the results. For each ```drunk_level``` the script ran the model 1,000 times. The results are shown on the boxplot below. As expected, in general, the higher the ```drunk_level```, the longer it takes all drunks to get home.
+I was interested to see how the drunks' ```drunk_level``` affects the time taken for all drunks to get home and so I created a separate script (**measure_drunks_moves.py**) that would simulate the model with drunks at different ```drunk_level```s (without outputting the animation or text file), store the number of iterations it took all drunks to get home, and then plot a boxplot of the results. For each ```drunk_level``` the script ran the model 1,000 times with all of the drunks at the same ```drunk_level```. The results are shown on the boxplot below. As expected, in general, the higher the ```drunk_level```, the longer it takes all drunks to get home.
 
 ![boxplot](images/boxplot.png)
 
