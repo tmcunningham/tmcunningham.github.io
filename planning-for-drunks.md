@@ -142,6 +142,6 @@ There are no major known issues with the programme. The following areas are poin
 - The drunks can take a while to get around buildings (particularly the pub, which is larger than the houses) if they are sober and their house is on the other side. This depends on the direction chosen for the drunk to move in. As this choice is random, the number of iterations taken for this to resolve will vary but it should happen eventually.
 - As the stopping of drunks going through buildings is done by looking at the co-ordinate that they move to rather than the path they take, if the drunk's ```speed``` was too high, they could potentially jump over buildings (including their own house). While this is not an issue for the values in the model (and ```speed``` is a protected attribute that is set automatically within the drunk class), it is worth being aware of if a user starts to chaneg the source code.
 
-Further work on this programme could include:
+Further work on this project could include:
 - Introducing a way for drunks to interact with each other (e.g., stopping to talk to one another when close enough).
 - Simulating the drunks moving inside the pub until they get to one of the exits.
