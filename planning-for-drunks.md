@@ -50,8 +50,11 @@ I made the decision that the output of the model should be presented as an anima
 
 ### Challenges
 
-#### Recognising houses and pub from raster file
+#### Getting co-ordinates of pub and houses from raster file
 
+The buildings were represented in the **drunk.plan** data file by numbers - 1 for the pub and then house numbers in multiples of 10 from 10 to 250 for the houses. I thought the easiest way to extract and work with the buildings would be to create a named dictionary, where the keys were the house numbers (or "pub") and the values were a list of all the co-ordinates that made up that building in the data file. To do this, I created a for loop over all the building numbers and for each iteration looped over each co-ordinate in the import of the **drunk.plan** data, adding its (x, y) position to the current building's value list if the value at that position was equal to the building number.
+
+I used the co-ordinates to set a starting point for the drunks leaving the pub. I assumed that the pub had two doors, one in the north-east corner and one in the south-west. Each drunk is assigned just outside one of these co-ordinates (+1 x and +1 y so they didn't start inside the building) at random to start from.
 
 #### Drunks moving around buildings
 
