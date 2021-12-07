@@ -5,9 +5,9 @@ Title: Planning for drunks
 
 ## **[View this project on GitHub](https://github.com/tmcunningham/planning-for-drunks)**
 
-This project simulates drunks leaving a pub and moving around an environment until they find their home. There are 25 drunks and each has an assigned house. Initially, the drunks cannot remember where they live and move randomly, but they gradually sober up and eventually start moving towards their homes.
-
-Practical information on how to run the model can be found in the README on GitHub - this page covers the intentions of the project and the development process in slightly more detail.
+This project simulates drunks leaving a pub and moving around an environment until they find their home. There are 25 drunks and each has an assigned house. Initially, the drunks cannot remember where they live and move randomly, but they gradually sober up and eventually start moving towards their homes. The gif below shows an animation of the first 200 iterations of one version of the model with the default parameters. Buildings are represented by squares (the pub is very faint in the centre) and drunks by the dots, the colour of which represents the drunk's current ```drunk_level``` (blue is the most drunk, red is a ```drunk_level``` of 0).
+![gif of drunks](images/drunks.gif)
+Practical information on how to run the model can be found in the [README on GitHub](https://github.com/tmcunningham/planning-for-drunks/blob/master/README.md) - this page covers the intentions of the project and the development process in slightly more detail.
 
 ## Requirements
 
@@ -124,11 +124,15 @@ else:
 
 ### Test module
 
-I created a separate test module, test_drunk_functions.py, for testing the model's functions and methods of the drunk class. While I created most of these tests after the functions (and I had already done some ad-hoc testing of the functions), it was helpful to know that the functions worked in the way I expected. the tests also helped me spot some minor issues - for exmaple, a string printed by the ```drunk_functions.gen_function``` function had douple spaces which meant it failed the ```TestGenFunction.test_past_iterations``` test.
+I created a separate test module, **test_drunk_functions.py**, for testing the model's functions and methods of the drunk class. While I created most of these tests after the functions (and I had already done some ad-hoc testing of the functions), it was helpful to know that the functions worked in the way I expected. the tests also helped me spot some minor issues - for exmaple, a string printed by the ```drunk_functions.gen_function``` function had douple spaces which meant it failed the ```TestGenFunction.test_past_iterations``` test. The test module can be run using the following line of code in the command line in the **python** directory of the project:
+
+```
+python -m unittest test_drunk_functions
+```
 
 ### Comparing drunk levels
 
-I was interested to see how the drunks' ```drunk_level``` affects the time taken for all drunks to get home and so I created a separate script (**measure_drunks_moves.py**) that would simulate the model with drunks at different ```drunk_level```s (without outputting the animation or text file), store the number of iterations it took all drunks to get home, and then plot a boxplot of the results. For each ```drunk_level``` the script ran the model 1,000 times. The results are shown on the boxplot below. As expected, in general, the higher the ```drunk_level```, the longer it takes all drunks to get home.
+I was interested to see how the drunks' ```drunk_level``` affects the time taken for all drunks to get home and so I created a separate script (**measure_drunks_moves.py**) that would simulate the model with drunks at different ```drunk_level```s (without outputting the animation or text file), store the number of iterations it took all drunks to get home, and then plot a boxplot of the results. For each ```drunk_level``` the script ran the model 1,000 times with all of the drunks at the same ```drunk_level```. The results are shown on the boxplot below. As expected, in general, the higher the ```drunk_level```, the longer it takes all drunks to get home.
 
 ![boxplot](images/boxplot.png)
 
@@ -138,6 +142,6 @@ There are no major known issues with the programme. The following areas are poin
 - The drunks can take a while to get around buildings (particularly the pub, which is larger than the houses) if they are sober and their house is on the other side. This depends on the direction chosen for the drunk to move in. As this choice is random, the number of iterations taken for this to resolve will vary but it should happen eventually.
 - As the stopping of drunks going through buildings is done by looking at the co-ordinate that they move to rather than the path they take, if the drunk's ```speed``` was too high, they could potentially jump over buildings (including their own house). While this is not an issue for the values in the model (and ```speed``` is a protected attribute that is set automatically within the drunk class), it is worth being aware of if a user starts to chaneg the source code.
 
-Further work on this programme could include:
+Further work on this project could include:
 - Introducing a way for drunks to interact with each other (e.g., stopping to talk to one another when close enough).
 - Simulating the drunks moving inside the pub until they get to one of the exits.
