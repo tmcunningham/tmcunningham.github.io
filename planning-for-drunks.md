@@ -26,7 +26,7 @@ As well as the basic assignment requirements, I made two major additions to the 
 
 ### 1. Drunks will sober up and eventually remember where their home is
 
-Drunks have a ```drunk_level``` attribute, which determines "how drunk" they are. The drunk level decreases when they visit locations they have previously been to (the idea being that recognising a place helps them to sober up). When the ```drunk_level``` drops to less than half of the initial ```drunk_level```, the drunk's speed increases from 1 to 3. When the ```drunk_level``` drops to less than a quarter of the initial ```drunk_level```, the drunk's speed increases to 5. When the drunk completely sobers up (i.e. ```drunk_level = 0```), then the drunk will not move randomly and instead move in the direction of their house.
+Drunks have a ```drunk_level``` attribute, which determines "how drunk" they are. The drunk level decreases when they visit locations they have previously been to (the idea being that recognising a place helps them to sober up). When the ```drunk_level``` drops to less than half of the initial ```drunk_level```, the drunk's ```speed``` increases from 1 to 3. When the ```drunk_level``` drops to less than a quarter of the initial ```drunk_level```, the drunk's ```speed``` increases to 5. When the drunk completely sobers up (i.e. ```drunk_level = 0```), then the drunk will not move randomly and instead move in the direction of their house.
 
 ### 2. Drunks cannot move through buildings
 
